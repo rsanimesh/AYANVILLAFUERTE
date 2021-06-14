@@ -59,6 +59,10 @@
 
             // });
 
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/' + page), function(data) {
+                alert(data.contents);
+            });
+
             $.ajax({
                 beforeSend: function(request) {
                     request.setRequestHeader("Access-Control-Allow-Origin", "*");
