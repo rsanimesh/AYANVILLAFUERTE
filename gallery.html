@@ -45,19 +45,41 @@
         }
 
         function loadGallery(page) {
-            $.getJSON('https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/#cors' + page, data => {
+            // $.getJSON('https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/#cors' + page, data => {
 
-                // Set the h3 tag with the name of page/image section 
-                let pageNameDiv = document.getElementById("pageName");
-                pageNameDiv.innerHTML = page;
+            //     // Set the h3 tag with the name of page/image section 
+            //     let pageNameDiv = document.getElementById("pageName");
+            //     pageNameDiv.innerHTML = page;
 
-                // load images from the  request section folder
-                let image_html = data.map(createImgTags).join("");
+            //     // load images from the  request section folder
+            //     let image_html = data.map(createImgTags).join("");
 
-                let pageImagesDiv = document.getElementById("pageImages");
-                pageImagesDiv.innerHTML = image_html;
+            //     let pageImagesDiv = document.getElementById("pageImages");
+            //     pageImagesDiv.innerHTML = image_html;
 
+            // });
+
+            $.ajax({
+                beforeSend: function(request) {
+                    request.setRequestHeader("Access-Control-Allow-Origin", "*");
+                },
+                dataType: "json",
+                url: 'https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/' + page + '#cors',
+                success: function(data) {
+                    console.log(data);
+                    // Set the h3 tag with the name of page/image section 
+                    let pageNameDiv = document.getElementById("pageName");
+                    pageNameDiv.innerHTML = page;
+
+                    // load images from the  request section folder
+                    let image_html = data.map(createImgTags).join("");
+
+                    let pageImagesDiv = document.getElementById("pageImages");
+                    pageImagesDiv.innerHTML = image_html;
+                }
             });
+
+
         }
 
         function getParams() {
