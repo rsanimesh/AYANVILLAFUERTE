@@ -38,5 +38,8 @@ $(document).ready(function() {
 
     let params = getParams();
     let page = unescape(params["page"]);
+    if (page.lastIndexOf("#") != -1) {
+        page = page.slice(0, -1);
+    }
     loadGallery(page);
 });
