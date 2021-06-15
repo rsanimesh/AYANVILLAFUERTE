@@ -4,6 +4,7 @@
     <!-- Navbar  -->
     <div w3-include-html="navigation.html"></div>
 
+
     <!-- GALLERY  -->
     <section class="p-5">
         <div class="container-fuild">
@@ -13,94 +14,35 @@
         </div>
     </section>
 
-
     <!-- Conatct, Map & Footer  -->
     <div w3-include-html="contact_footer.html"></div>
-
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js " integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4 " crossorigin="anonymous "></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <script>
-        w3.includeHTML();
-
-        function loadMap() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoicnNhbmltZXNoIiwiYSI6ImNrcHVwenJhejBmMHUydW56Mm5wazFmeHQifQ.MGae3Npz-XLbadNWwIcabg';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [120.9842, 14.5995],
-                zoom: 12
-            });
-        }
-
-        setTimeout(function() {
-            loadMap()
-        }, 1000);
-
-        function createImgTags(img) {
-            return `<img src="img/Architecture/${page}/${img}" class="img-fluid my-2">`
-        }
-
-        function loadGallery(page) {
-            // $.getJSON('https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/#cors' + page, data => {
-
-            //     // Set the h3 tag with the name of page/image section 
-            //     let pageNameDiv = document.getElementById("pageName");
-            //     pageNameDiv.innerHTML = page;
-
-            //     // load images from the  request section folder
-            //     let image_html = data.map(createImgTags).join("");
-
-            //     let pageImagesDiv = document.getElementById("pageImages");
-            //     pageImagesDiv.innerHTML = image_html;
-
-            // });
-
-            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/' + page), function(data) {
-                alert(data.contents);
-            });
-
-            $.ajax({
-                beforeSend: function(request) {
-                    request.setRequestHeader("Access-Control-Allow-Origin", "*");
-                },
-                dataType: "json",
-                url: 'https://github.com/rsanimesh/AYANVILLAFUERTE/tree/main/img/Architecture/' + page + '#cors',
-                success: function(data) {
-                    console.log(data);
-                    // Set the h3 tag with the name of page/image section 
-                    let pageNameDiv = document.getElementById("pageName");
-                    pageNameDiv.innerHTML = page;
-
-                    // load images from the  request section folder
-                    let image_html = data.map(createImgTags).join("");
-
-                    let pageImagesDiv = document.getElementById("pageImages");
-                    pageImagesDiv.innerHTML = image_html;
-                }
-            });
-
-
-        }
-
-        function getParams() {
-            var idx = document.URL.indexOf('?');
-            var params = new Array();
-            if (idx != -1) {
-                var pairs = document.URL.substring(idx + 1, document.URL.length).split('&');
-                for (var i = 0; i < pairs.length; i++) {
-                    nameVal = pairs[i].split('=');
-                    params[nameVal[0]] = nameVal[1];
-                }
-            }
-            return params;
-        }
-
-        let params = getParams();
-        let page = unescape(params["page"]);
-        loadGallery(page);
-    </script>
+    <script src="js/myData.js"></script>
+    <script src="js/myScript.js"></script>
 </body>
+<script>
+    w3.includeHTML();
+
+    function loadMap() {
+        mapboxgl.accessToken = 'pk.eyJ1IjoicnNhbmltZXNoIiwiYSI6ImNrcHVwenJhejBmMHUydW56Mm5wazFmeHQifQ.MGae3Npz-XLbadNWwIcabg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [120.9842, 14.5995],
+            zoom: 12
+        });
+    }
+
+    setTimeout(function() {
+        loadMap();
+
+    }, 1000);
+</script>
+
+
+</html>
